@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { Pool } = require('pg');
 const { PrismaClient } = require('@prisma/client');
 const { PrismaPg } = require('@prisma/adapter-pg');
@@ -40,15 +41,13 @@ async function main() {
 
     const allPermissions = await prisma.permission.findMany();
     const rootRole = await prisma.role.upsert({
-        where: {
-            name: 'ROOT'
-        },
+        where: { name: 'ROOT' },
         update: {},
         create: {
             name: 'ROOT',
             hierarchyLevel: 1,
             permissions: {
-                connect: allPermissions.map(p => ({ id: p.id }))
+                connect: allPermissions.map(p => ({ code: p.code }))
             }
         }
     });

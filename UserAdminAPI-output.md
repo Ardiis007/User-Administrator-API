@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `UserAdminAPI`
-- **Generated On**: 2026-07-06 21:32:01 (America/Bogota / GMT-05:00)
+- **Generated On**: 2026-07-06 22:16:00 (America/Bogota / GMT-05:00)
 - **Total Files Processed**: 27
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -26,7 +26,7 @@
 │   │   │   └── 📄 migration.sql (1.68 KB)
 │   │   └── 📄 migration_lock.toml (128 B)
 │   ├── 📄 schema.prisma (1.01 KB)
-│   └── 📄 seed.js (3.37 KB)
+│   └── 📄 seed.js (3.38 KB)
 ├── 📁 src/
 │   ├── 📁 controllers/
 │   │   ├── 📄 authController.js (1018 B)
@@ -54,7 +54,7 @@
 │   ├── 📄 app.js (816 B)
 │   └── 📄 server.js (191 B)
 ├── 📄 package-lock.json (97.77 KB)
-├── 📄 package.json (716 B)
+├── 📄 package.json (808 B)
 └── 📄 prisma.config.ts (281 B)
 ```
 
@@ -99,7 +99,7 @@
 | Total Directories | 9 |
 | Text Files | 26 |
 | Binary Files | 1 |
-| Total Size | 131.19 KB |
+| Total Size | 131.29 KB |
 
 ### 📄 File Types Distribution
 
@@ -224,20 +224,21 @@ provider = "postgresql"
 ### <a id="📄-prisma-seed-js"></a>📄 `prisma/seed.js`
 
 **File Info:**
-- **Size**: 3.37 KB
+- **Size**: 3.38 KB
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `prisma/seed.js`
 - **Relative Path**: `prisma`
 - **Created**: 2026-07-03 16:33:56 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-06 21:17:29 (America/Bogota / GMT-05:00)
-- **MD5**: `64e82b44f184b7755ebafa0849ffd364`
-- **SHA256**: `84e4d983ec3294364e41e9b274038ec91bc12a473a94154ab4319c9c8ccc0f93`
+- **Modified**: 2026-07-06 22:15:05 (America/Bogota / GMT-05:00)
+- **MD5**: `a20d99f3ac09a4057fa64c4dd742c425`
+- **SHA256**: `0d2059d257a71f9250b90461d23d2d23eb88c74748d3b303b966eb0fa6e875ad`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```javascript
+require('dotenv').config();
 const { Pool } = require('pg');
 const { PrismaClient } = require('@prisma/client');
 const { PrismaPg } = require('@prisma/adapter-pg');
@@ -280,15 +281,13 @@ async function main() {
 
     const allPermissions = await prisma.permission.findMany();
     const rootRole = await prisma.role.upsert({
-        where: {
-            name: 'ROOT'
-        },
+        where: { name: 'ROOT' },
         update: {},
         create: {
             name: 'ROOT',
             hierarchyLevel: 1,
             permissions: {
-                connect: allPermissions.map(p => ({ id: p.id }))
+                connect: allPermissions.map(p => ({ code: p.code }))
             }
         }
     });
@@ -4412,15 +4411,15 @@ app.listen(PORT, () => {
 ### <a id="📄-package-json"></a>📄 `package.json`
 
 **File Info:**
-- **Size**: 716 B
+- **Size**: 808 B
 - **Extension**: `.json`
 - **Language**: `json`
 - **Location**: `package.json`
 - **Relative Path**: `root`
 - **Created**: 2026-07-01 16:30:41 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-03 20:08:29 (America/Bogota / GMT-05:00)
-- **MD5**: `91cf4ba9c577fd38bfd4c0cce0b1901a`
-- **SHA256**: `2175e2948a14a8e800910b9e17af875e6caebf1209dc432c73da360f75f3edec`
+- **Modified**: 2026-07-06 22:16:00 (America/Bogota / GMT-05:00)
+- **MD5**: `c930f9391bcd34f70992bffb3dbb63b6`
+- **SHA256**: `6fab996fceff38df2a1ab62ccd26c0e794d778cf539b4df76dab49d43cb81b8e`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -4432,8 +4431,10 @@ app.listen(PORT, () => {
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch src/server.js"
+  "start": "node src/server.js",
+  "postinstall": "prisma generate",
+  "build": "prisma migrate deploy",
+  "dev": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -4457,6 +4458,9 @@ app.listen(PORT, () => {
     "bcrypt@6.0.0": true,
     "@prisma/engines@7.8.0": true,
     "prisma@7.8.0": true
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }
 
