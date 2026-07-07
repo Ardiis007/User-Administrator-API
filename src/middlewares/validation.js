@@ -11,7 +11,7 @@ function isValidPassword(password) {
     return typeof password === 'string' && password.length >= 10;
 }
 
-function validateUser(name, email, password) {
+function validateUser(req, res, next) {
     const { name, email, password } = req.body;
     const errors = []
 
