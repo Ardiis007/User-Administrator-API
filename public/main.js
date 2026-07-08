@@ -118,7 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Cargamos roles y permisos para llenar los selects (comboboxes)
         try {
             const rolesRes = await apiFetch('/roles');
-            populateSelect(userRoleSelect, rolesRes.data, 'id', 'name');
+            const assignableRoles = rolesRes.data.filter(r => r.name !== 'ROOT');
+            populateSelect(userRoleSelect, assignableRoles, 'id', 'name');
             
             const permRes = await apiFetch('/permissions');
             populateSelect(rolePermissionsSelect, permRes.data, 'code', 'code');
