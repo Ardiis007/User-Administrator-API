@@ -5,7 +5,7 @@ PROJECT EXPORT FOR LLMs
 PROJECT INFORMATION:
 --------------------------------------------------
 Project Name: UserAdminAPI
-Generated On: 2026-07-08 15:01:44 (America/Bogota / GMT-05:00)
+Generated On: 2026-07-08 15:11:50 (America/Bogota / GMT-05:00)
 Total Files Processed: 29
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
@@ -329,9 +329,9 @@ Language: html
 Location: public/index.html
 Relative Path: public
 Created: 2026-07-08 14:59:51 (America/Bogota / GMT-05:00)
-Modified: 2026-07-08 15:01:43 (America/Bogota / GMT-05:00)
-MD5: f599e42fb30d5442073bcdc59de82fc2
-SHA256: a42b3efe5a472777bc68252c63a800855a3c8d784e725908159d5fc766b77580
+Modified: 2026-07-08 15:11:49 (America/Bogota / GMT-05:00)
+MD5: db01df9f572a0015289f52ddd3032804
+SHA256: 0f656d5a2eeae4caed8b830a180ab80e914d44e9c927a8d8d9807bd0baeddba0
 Encoding: ASCII
 
 FILE CONTENT:
@@ -370,11 +370,11 @@ FILE CONTENT:
         <form id="loginForm">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" required placeholder="root@horus.com">
+                <input type="email" id="email" required placeholder="ejemplo@horus.com">
             </div>
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" required placeholder="Roothorus321">
+                <input type="password" id="password" required placeholder="********">
             </div>
             <button type="submit">Entrar</button>
         </form>
