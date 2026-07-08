@@ -54,7 +54,7 @@ const getUser = async (requesterUser, { id }) => {
 };
 
 const updateUser = async (requesterUser, targetUserId, updateData) => {
-    const { name, email, password, status, roleId } = updateData;
+    const { name, email, password, currentPassword, status, roleId } = updateData;
 
     const targetUser = await prisma.user.findUnique({
         where: { id: targetUserId },
@@ -64,16 +64,24 @@ const updateUser = async (requesterUser, targetUserId, updateData) => {
     if (!targetUser) throw { statusCode: 404, message: 'User not found' };
 
     const isRoot = requesterUser.role.name === 'ROOT'; 
-    
     const isSelfUpdate = isSelf(requesterUser.id, targetUser.id);
 
     if (isSelfUpdate) {
         if (!isRoot && (status !== undefined || roleId !== undefined)) {
             throw { statusCode: 403, message: 'You can not change your own role or status' };
         }
-    }
-
-    else {
+        
+        if (password !== undefined && password !== null && password !== '') {
+            if (!currentPassword) {
+                throw { statusCode: 400, message: 'Current password is required to change your password' };
+            }
+            
+            const isMatch = await bcrypt.compare(currentPassword, targetUser.password);
+            if (!isMatch) {
+                throw { statusCode: 401, message: 'The current password you entered is incorrect' };
+            }
+        }
+    } else {
         validateHierarchy(requesterUser, targetUser.role.hierarchyLevel);        
 
         if (status !== undefined) {
@@ -94,12 +102,22 @@ const updateUser = async (requesterUser, targetUserId, updateData) => {
             });
 
             if (!newRole) throw { statusCode: 404, message: 'The new role does not exist' };
-            validateHierarchy(requesterUser, newRole.hierarchyLevel);
+            
+            if (newRole.name === 'ROOT') {
+                throw { statusCode: 403, message: 'El rol ROOT no puede ser asignado.' };
+            }
+
+            if (newRole.hierarchyLevel <= requesterUser.role.hierarchyLevel) {
+                throw { statusCode: 403, message: 'No puedes asignar un rol con un nivel de jerarquía igual o mayor al tuyo.' };
+            }
         }
     }
 
-    if (targetUser.role.name === 'ROOT' && roleId !== undefined && roleId !== targetUser.roleId) {
-        throw { statusCode: 403, message: 'You can not change the ROOT user role' };
+    if (targetUser.role.name === 'ROOT') {
+        throw { 
+            statusCode: 403, 
+            message: 'The ROOT user is immutable and cannot be modified by anyone' 
+        };
     }
 
     let hashedPassword = targetUser.password;
