@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path'); //frontend
 const app = express();
 const loggerMiddleware = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
@@ -15,14 +16,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(loggerMiddleware);
 app.use(cors());
 
+app.use(express.static(path.join(__dirname, '../public')));
+
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/roles', roleRoutes);
 app.use('/api/permissions', permissionRoutes);
-
-app.get('/', (req, res) => {
-    res.send('User Administrator API');
-});
 
 app.use(errorHandler);
 
