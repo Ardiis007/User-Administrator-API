@@ -7,7 +7,7 @@ const { validateUser } = require('../middlewares/validation');
 
 const router = Router();
 
-router.post('/:id', authenticateToken, checkPermission('Create user'), createUserController);
+router.post('/', authenticateToken, checkPermission('Create User'), createUserController);
 router.get('/:id', authenticateToken, checkPermission('Get User'), getUserController);
 router.put('/:id', authenticateToken, checkPermission('Update User'), updateUserController);
 router.delete('/:id', authenticateToken, checkPermission('Delete User'), deleteUserController);

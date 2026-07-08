@@ -19,7 +19,7 @@ const updatePermissionController = async (req, res, next) => {
     try {
         const permissionId = parseInt(req.params.id, 10);
         const updatedData = req.body;
-        const updatedPermission = await permissionService.updatePermission(permissionId, updateData);
+        const updatedPermission = await permissionService.updatePermission(permissionId, updatedData);
 
         res.status(200).json({
             status: 'success',

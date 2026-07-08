@@ -8,7 +8,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const roleRoutes = require('./routes/roleRoutes');
-const permissionRoutes = require('./routes/permissionRoutes');
+const permissionRoutes = require('./routes/permissionsRoutes');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

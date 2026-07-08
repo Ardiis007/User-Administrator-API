@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `UserAdminAPI`
-- **Generated On**: 2026-07-07 14:16:40 (America/Bogota / GMT-05:00)
+- **Generated On**: 2026-07-08 14:32:28 (America/Bogota / GMT-05:00)
 - **Total Files Processed**: 27
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -29,29 +29,29 @@
 │   └── 📄 seed.js (3.38 KB)
 ├── 📁 src/
 │   ├── 📁 controllers/
-│   │   ├── 📄 authController.js (1018 B)
+│   │   ├── 📄 authController.js (1019 B)
 │   │   ├── 📄 permissionController.js (1.79 KB)
-│   │   ├── 📄 roleController.js (2.15 KB)
-│   │   └── 📄 userController.js (2.24 KB)
+│   │   ├── 📄 roleController.js (2.21 KB)
+│   │   └── 📄 userController.js (2.29 KB)
 │   ├── 📁 middlewares/
 │   │   ├── 📄 auth.js (1.05 KB)
 │   │   ├── 📄 checkPermission.js (709 B)
-│   │   ├── 📄 errorHandler.js (539 B)
+│   │   ├── 📄 errorHandler.js (625 B)
 │   │   ├── 📄 logger.js (423 B)
 │   │   └── 📄 validation.js (1.58 KB)
 │   ├── 📁 routes/
-│   │   ├── 📄 authRoutes.js (257 B)
+│   │   ├── 📄 authRoutes.js (253 B)
 │   │   ├── 📄 permissionsRoutes.js (793 B)
 │   │   ├── 📄 roleRoutes.js (828 B)
-│   │   └── 📄 userRoutes.js (893 B)
+│   │   └── 📄 userRoutes.js (890 B)
 │   ├── 📁 services/
 │   │   ├── 📄 permissionService.js (1.75 KB)
 │   │   ├── 📄 prismaClient.js (315 B)
-│   │   ├── 📄 roleService.js (3.92 KB)
-│   │   └── 📄 userService.js (4.7 KB)
+│   │   ├── 📄 roleService.js (3.96 KB)
+│   │   └── 📄 userService.js (4.98 KB)
 │   ├── 📁 utils/
 │   │   └── 📄 operationValidation.js (474 B)
-│   ├── 📄 app.js (816 B)
+│   ├── 📄 app.js (817 B)
 │   └── 📄 server.js (191 B)
 ├── 📄 package-lock.json (97.77 KB)
 ├── 📄 package.json (772 B)
@@ -99,7 +99,7 @@
 | Total Directories | 9 |
 | Text Files | 26 |
 | Binary Files | 1 |
-| Total Size | 131.25 KB |
+| Total Size | 131.76 KB |
 
 ### 📄 File Types Distribution
 
@@ -230,9 +230,9 @@ provider = "postgresql"
 - **Location**: `prisma/seed.js`
 - **Relative Path**: `prisma`
 - **Created**: 2026-07-03 16:33:56 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-06 22:15:05 (America/Bogota / GMT-05:00)
-- **MD5**: `a20d99f3ac09a4057fa64c4dd742c425`
-- **SHA256**: `0d2059d257a71f9250b90461d23d2d23eb88c74748d3b303b966eb0fa6e875ad`
+- **Modified**: 2026-07-08 14:32:27 (America/Bogota / GMT-05:00)
+- **MD5**: `21d47c27b8b7e4084370e2ae17f52f34`
+- **SHA256**: `fff47bbe79ae0ba211b2f019148bc7ee5a88121a6cb8b28c1ded396afaae2eda`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -256,16 +256,16 @@ async function main() {
         { code: 'Update User', description: 'Change user name or email or password' },
         { code: 'Delete User', description: 'Delete user' },
         { code: 'List User', description: 'View the list of existing users' },
+        { code: 'ChangeUserStatus', description: 'Change the status of an user' },
         { code: 'Create Role', description: 'Create a role and defined his hierarchy level' },
         { code: 'Get Role', description: 'View the name, hierarchy level and permissions of a role' },
         { code: 'Update Role', description: 'Change the role, hierarchy level and permissions of a role' },
         { code: 'Delete Role', description: 'Delete role' },
-        { code: 'List Role', description: 'View the list of existing roles, and his permissions'},
+        { code: 'List Permission', description: 'View the list of existing permissions'},
+        { code: 'List Role', description: 'View the list of existing roles and his permissions'},
         { code: 'Get Permission', description: 'View the permission name and its description' },
         { code: 'Update Permission', description: 'Change the name or description of a permission' },
-        { code: 'Delete Permission', description: 'Delete a permission' },
-        { code: 'List Permission', description: 'View the list of existing permissions'},
-        { code: 'ChangeUserStatus', description: 'Change the status of an user' }
+        { code: 'Delete Permission', description: 'Delete a permission' }
     ];
 
     for (const perm of permissionsData) {
@@ -345,15 +345,15 @@ The following files were not included in the text content:
 ### <a id="📄-src-controllers-authcontroller-js"></a>📄 `src/controllers/authController.js`
 
 **File Info:**
-- **Size**: 1018 B
+- **Size**: 1019 B
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/controllers/authController.js`
 - **Relative Path**: `src/controllers`
 - **Created**: 2026-07-03 16:07:26 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-03 16:30:34 (America/Bogota / GMT-05:00)
-- **MD5**: `6909aa9a336727b75e61e5090afc342f`
-- **SHA256**: `996c07b2913b17e4fda36f57c78482a869a1319767d875c22690921238ecf309`
+- **Modified**: 2026-07-07 15:57:19 (America/Bogota / GMT-05:00)
+- **MD5**: `633ee2d99566b567069197759b6015ea`
+- **SHA256**: `e5ae0d42601077e341a066c942e4073ef774405cb63e2799e7dd7f6a20cd7968`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -377,7 +377,7 @@ const login = async (req, res, next) => {
             return res.status(403).json({ message: 'The user is deactivated' });
         }
 
-        const isMatch = await bcrypt.compare(password, userPassword);
+        const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
@@ -408,9 +408,9 @@ module.exports = login;
 - **Location**: `src/controllers/permissionController.js`
 - **Relative Path**: `src/controllers`
 - **Created**: 2026-07-06 21:19:19 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-06 21:26:42 (America/Bogota / GMT-05:00)
-- **MD5**: `f368c22c6e409a3b4a8e8f9a0e77dd55`
-- **SHA256**: `e32142b89e7d237915749db30f2b1acfc3ac8e672b4609d44e7d08f00f89f9f2`
+- **Modified**: 2026-07-08 14:26:08 (America/Bogota / GMT-05:00)
+- **MD5**: `2ad74c2ed05da026e87576c9408334cc`
+- **SHA256**: `d922a345919a1928d508a63cd8a040228844d53e1f91a650e8cadc0a4849722c`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -437,7 +437,7 @@ const updatePermissionController = async (req, res, next) => {
     try {
         const permissionId = parseInt(req.params.id, 10);
         const updatedData = req.body;
-        const updatedPermission = await permissionService.updatePermission(permissionId, updateData);
+        const updatedPermission = await permissionService.updatePermission(permissionId, updatedData);
 
         res.status(200).json({
             status: 'success',
@@ -486,15 +486,15 @@ module.exports = { getPermissionController, updatePermissionController, deletePe
 ### <a id="📄-src-controllers-rolecontroller-js"></a>📄 `src/controllers/roleController.js`
 
 **File Info:**
-- **Size**: 2.15 KB
+- **Size**: 2.21 KB
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/controllers/roleController.js`
 - **Relative Path**: `src/controllers`
 - **Created**: 2026-07-06 13:46:04 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-06 17:12:07 (America/Bogota / GMT-05:00)
-- **MD5**: `29ce4000868c36f1d47fc10b97c6de10`
-- **SHA256**: `be00f4a62ecb04e88ede37745841c0f7ec39c4850b151ff25024ecc1411f76f3`
+- **Modified**: 2026-07-07 18:33:08 (America/Bogota / GMT-05:00)
+- **MD5**: `aa739ad4e70e8ce2a028f334dbc649dc`
+- **SHA256**: `fe86d307284bad3e6d98b32c2e7a64349ae216bb3ea1a3b03dad668ef3f589d5`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -520,8 +520,10 @@ const createRoleController = async (req, res, next) => {
 
 const getRoleController = async (req, res, next) => {
     try {
+        const requesterUser = req.user;
         const roleId = parseInt(req.params.id, 10);
-        const role = await roleService.getRole(roleId);
+        
+        const role = await roleService.getRole(requesterUser, roleId);
 
         res.status(200).json({
             status: 'Success',
@@ -536,7 +538,7 @@ const updateRoleController = async (req, res, next) => {
     try {
         const requesterUser = req.user;
         const roleId = parseInt(req.params.id, 10);
-        const updatedData = req.body;
+        const updateData = req.body;
         const updatedRole = await roleService.updateRole(requesterUser, roleId, updateData);
 
         res.status(200).json({
@@ -566,8 +568,8 @@ const deleteRoleController = async (req, res, next) => {
 
 const listRoleController = async (req, res, next) => {
     try {
-        const requesterUser = req.user;
-        const roles = await roleService.listRoles(requestedUser);
+        const requestedUser = req.user;
+        const roles = await roleService.listRole(requestedUser);
 
         res.status(200).json({
             status: 'Success',
@@ -587,15 +589,15 @@ module.exports = { createRoleController, getRoleController, updateRoleController
 ### <a id="📄-src-controllers-usercontroller-js"></a>📄 `src/controllers/userController.js`
 
 **File Info:**
-- **Size**: 2.24 KB
+- **Size**: 2.29 KB
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/controllers/userController.js`
 - **Relative Path**: `src/controllers`
 - **Created**: 2026-07-04 15:22:52 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-06 17:01:48 (America/Bogota / GMT-05:00)
-- **MD5**: `e9f5f331539e09de470e7d10630dd222`
-- **SHA256**: `48f61d9166289683c9d20458c473bcbbdcc1e09e3cfee9870a9e1283b6f05c68`
+- **Modified**: 2026-07-07 16:59:53 (America/Bogota / GMT-05:00)
+- **MD5**: `fdee2ce5b68227bc1ab8168f1d2ff8f3`
+- **SHA256**: `e85d5666220d99b6db35c0afe541d85dfb12c333e0311d4d39cb5b24419fb006`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -606,8 +608,8 @@ const userService = require('../services/userService');
 
 const createUserController = async (req, res, next) => {
     try {
-        creatorUser = req.user;
-        userData = req.body;
+        const creatorUser = req.user;
+        const userData = req.body;
 
         const newUser = await userService.createUser(creatorUser, userData);    
 
@@ -627,9 +629,9 @@ const getUserController = async (req, res, next) => {
         const { id } = req.params;               
 
         
-        const userData = { id };
+        const userData = { id: parseInt(id, 10) }
 
-        const user = await getUser(requesterUser, userData);
+        const user = await userService.getUser(requesterUser, userData);
 
         res.status(200).json({
             status: 'Success',
@@ -652,10 +654,10 @@ const updateUserController = async (req, res, next) => {
         res.status(200).json({
             status: 'Success',
             message: 'User updated successfully',
-            data: updatedUser
+            data: updateUser
         });
     } catch (error) {
-        
+        next(error);
     }
 };
 
@@ -675,11 +677,11 @@ const deleteUserController = async(req, res, next) => {
     }
 };
 
-const listUserController = async(req, res, next) => {
+const listUserController = async (req, res, next) => {
     try {
         const requesterUser = req.user; 
         
-        const users = await userService.listUsers(requesterUser);
+        const users = await userService.listUser(requesterUser);
 
         res.status(200).json({
             status: 'Success',
@@ -807,15 +809,15 @@ module.exports = checkPermission;
 ### <a id="📄-src-middlewares-errorhandler-js"></a>📄 `src/middlewares/errorHandler.js`
 
 **File Info:**
-- **Size**: 539 B
+- **Size**: 625 B
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/middlewares/errorHandler.js`
 - **Relative Path**: `src/middlewares`
 - **Created**: 2026-07-01 18:02:56 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-01 18:04:10 (America/Bogota / GMT-05:00)
-- **MD5**: `8adcaf3ac4c2cb44e5f57f0f44b9ee14`
-- **SHA256**: `a117407b55d3c8690a928b6e7c261ffc31cd92f9dd21b23851c6f88eac742379`
+- **Modified**: 2026-07-07 16:03:51 (America/Bogota / GMT-05:00)
+- **MD5**: `be91b714858e3ce3528a7feb0605fc35`
+- **SHA256**: `0281b2137be50ace951f7895ef55d6a4a0b3178794606c77412315901cd4cf84`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -831,12 +833,17 @@ const errorHandler = (error, req, res, next) => {
         console.error(error.stack);
     }
 
-    res.status(statusCode).json({
+    const response = {
         status: 'error',
-        statusCode,
-        message,
-        ...(process.env.NODE_ENV === 'development' && {stack: error.stack})
-    });
+        statusCode: statusCode,
+        message: message
+    };
+
+    if (process.env.NODE_ENV === 'development' && error.stack) {
+        response.stack = error.stack;
+    }
+
+    res.status(statusCode).json(response);
 };
 
 module.exports = errorHandler;
@@ -965,22 +972,22 @@ module.exports = { validateUser, validateLogin };
 ### <a id="📄-src-routes-authroutes-js"></a>📄 `src/routes/authRoutes.js`
 
 **File Info:**
-- **Size**: 257 B
+- **Size**: 253 B
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/routes/authRoutes.js`
 - **Relative Path**: `src/routes`
 - **Created**: 2026-07-03 15:58:10 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-03 17:10:30 (America/Bogota / GMT-05:00)
-- **MD5**: `6e50444b719744451d02e06e55405ce3`
-- **SHA256**: `f48afb2d8790d5f604c977e4466803fa58d95756a8fcac114d7e60923b291699`
+- **Modified**: 2026-07-07 14:47:42 (America/Bogota / GMT-05:00)
+- **MD5**: `891a96b77fa5cf84fb872f230c7acc04`
+- **SHA256**: `ebf7a4409ce163b0a04ae4d0168f4a2aca2b499ac4bdec46fe58fa96c5042368`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```javascript
 const { Router } = require('express');
-const { login } = require('../controllers/authController');
+const login = require('../controllers/authController');
 const {validateLogin} = require('../middlewares/validation');
 const router = Router();
 
@@ -1065,15 +1072,15 @@ module.exports = router;
 ### <a id="📄-src-routes-userroutes-js"></a>📄 `src/routes/userRoutes.js`
 
 **File Info:**
-- **Size**: 893 B
+- **Size**: 890 B
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/routes/userRoutes.js`
 - **Relative Path**: `src/routes`
 - **Created**: 2026-07-03 15:58:20 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-06 17:21:01 (America/Bogota / GMT-05:00)
-- **MD5**: `43a039387b8ebda96202a9a5fe3642d2`
-- **SHA256**: `202bc0ec311e40e9d866f76e84e3b76002ec7d1bada481237714a215ea7bbe53`
+- **Modified**: 2026-07-07 18:15:12 (America/Bogota / GMT-05:00)
+- **MD5**: `9142234a8bfcc039972fd4ca947cb468`
+- **SHA256**: `d6e03e746a4be5cf1966df34510fa7f63438bbb7cded6ab50c7e103f7c9c3387`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1088,7 +1095,7 @@ const { validateUser } = require('../middlewares/validation');
 
 const router = Router();
 
-router.post('/:id', authenticateToken, checkPermission('Create user'), createUserController);
+router.post('/', authenticateToken, checkPermission('Create User'), createUserController);
 router.get('/:id', authenticateToken, checkPermission('Get User'), getUserController);
 router.put('/:id', authenticateToken, checkPermission('Update User'), updateUserController);
 router.delete('/:id', authenticateToken, checkPermission('Delete User'), deleteUserController);
@@ -1208,26 +1215,27 @@ module.exports = prisma;
 ### <a id="📄-src-services-roleservice-js"></a>📄 `src/services/roleService.js`
 
 **File Info:**
-- **Size**: 3.92 KB
+- **Size**: 3.96 KB
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/services/roleService.js`
 - **Relative Path**: `src/services`
 - **Created**: 2026-07-02 13:40:57 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-06 20:20:15 (America/Bogota / GMT-05:00)
-- **MD5**: `1a494806630f80499a2cb85722671e81`
-- **SHA256**: `53ab4621ee4b6f93fcb6964ff3789f24de6e13b28f05ad00fc1a5553de012c41`
+- **Modified**: 2026-07-07 18:31:44 (America/Bogota / GMT-05:00)
+- **MD5**: `78fbee6ec52753ddc8f511c8871d338e`
+- **SHA256**: `aed9d34aefbfb9c398fefc3a14bcc47f7e98e9b1d29f7811f7091b58f3653a53`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```javascript
 const prisma = require('./prismaClient');
-const { validateHierarchy } = require('../utils/helpers');
+const { validateHierarchy } = require('../utils/operationValidation');
 
 const createRole = async(requesterUser, roleData) => {
     const { name, hierarchyLevel, permissions } = roleData;
-    validateHierarchy(hierarchyLevel, permission);
+    
+    validateHierarchy(requesterUser, hierarchyLevel);
 
     const existingRole = await prisma.role.findUnique({ where: {name} });
     if (existingRole) {
@@ -1236,9 +1244,10 @@ const createRole = async(requesterUser, roleData) => {
 
     const newRole = await prisma.role.create({
         data: {
-            name, hierarchyLevel,
+            name, 
+            hierarchyLevel,
             permissions: {
-                connect: permissions ? permissions.map(id => ({ id })): []
+                connect: permissions ? permissions.map(code => ({ code })): []
             }
         },
         include: { permissions: true }
@@ -1286,7 +1295,7 @@ const updateRole = async (requesterUser, roleId, updateData) => {
             name: name !== undefined ? name : targetRole.name,
             hierarchyLevel: hierarchyLevel !== undefined ? hierarchyLevel: targetRole.hierarchyLevel,
             permissions: permissions ? {
-                set: permissions.map(id => ({ id }))
+                set: permissions.map(p => ({ code: p }))
             } : undefined
         },
         include: { permissions: true }
@@ -1357,15 +1366,15 @@ module.exports = { createRole, getRole, updateRole, deleteRole, listRole };
 ### <a id="📄-src-services-userservice-js"></a>📄 `src/services/userService.js`
 
 **File Info:**
-- **Size**: 4.7 KB
+- **Size**: 4.98 KB
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/services/userService.js`
 - **Relative Path**: `src/services`
 - **Created**: 2026-07-01 20:19:43 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-06 21:17:28 (America/Bogota / GMT-05:00)
-- **MD5**: `37ff8d082862e4fc650fec108b829f8c`
-- **SHA256**: `90f6cdca553021967111131c09f242943188f579e156d6e5c800d216163bd66b`
+- **Modified**: 2026-07-07 17:04:03 (America/Bogota / GMT-05:00)
+- **MD5**: `391e0d2221122759bac8885f93492907`
+- **SHA256**: `8d133b1086ddd6dfbfe3500944be0b08a5bc9c5fa4fc98abe494e66690478240`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1373,7 +1382,7 @@ module.exports = { createRole, getRole, updateRole, deleteRole, listRole };
 ```javascript
 const bcrypt = require('bcrypt');
 const prisma = require('./prismaClient');
-const { validateHierarchy, isSelf } = require('./utils/operationValidation');
+const { validateHierarchy, isSelf } = require('../utils/operationValidation');
 
 const createUser = async (requesterUser, userData) => {
     const { name, email, password, roleId } = userData;
@@ -1475,18 +1484,25 @@ const updateUser = async (requesterUser, targetUserId, updateData) => {
         throw { statusCode: 403, message: 'You can not change the ROOT user role' };
     }
 
+    let hashedPassword = targetUser.password;
+    if (password !== undefined && password !== null && password !== '') {
+        const salt = await bcrypt.genSalt(10);
+        hashedPassword = await bcrypt.hash(password, salt);
+    }
+
     return await prisma.user.update({
         where: { id: targetUserId },
         data: {
             name: name !== undefined ? name : targetUser.name,
             email: email !== undefined ? email : targetUser.email,
-            password: hashedPassword,
+            password: hashedPassword !== undefined ? hashedPassword : targetUser.password,
             status: status !== undefined ? status : targetUser.status,
             roleId: roleId !== undefined ? roleId : targetUser.roleId
         },
         select: { id: true, name: true, email: true, status: true, roleId: true }
     });
 };
+
 
 const deleteUser = async (requesterUser, targetUserId) => {
     const targetUser = await prisma.user.findUnique({
@@ -1562,15 +1578,15 @@ module.exports = { validateHierarchy, isSelf };
 ### <a id="📄-src-app-js"></a>📄 `src/app.js`
 
 **File Info:**
-- **Size**: 816 B
+- **Size**: 817 B
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/app.js`
 - **Relative Path**: `src`
 - **Created**: 2026-07-01 17:24:51 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-06 21:20:51 (America/Bogota / GMT-05:00)
-- **MD5**: `384d327c7fa5aa259217f6af10c60dd5`
-- **SHA256**: `06b08d5ed4321d0520aec90f658e22f4ee3597156416641f98ca0cfd94a2371c`
+- **Modified**: 2026-07-07 14:49:37 (America/Bogota / GMT-05:00)
+- **MD5**: `3b308c9e4613323b7e020f164d075f9f`
+- **SHA256**: `9bc81ce032e5eb6fdcf84899da2b19e783213eb2b24feb8dc0366f6c4504c6ad`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1586,7 +1602,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const roleRoutes = require('./routes/roleRoutes');
-const permissionRoutes = require('./routes/permissionRoutes');
+const permissionRoutes = require('./routes/permissionsRoutes');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

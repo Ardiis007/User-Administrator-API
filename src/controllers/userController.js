@@ -3,8 +3,8 @@ const userService = require('../services/userService');
 
 const createUserController = async (req, res, next) => {
     try {
-        creatorUser = req.user;
-        userData = req.body;
+        const creatorUser = req.user;
+        const userData = req.body;
 
         const newUser = await userService.createUser(creatorUser, userData);    
 
@@ -24,9 +24,9 @@ const getUserController = async (req, res, next) => {
         const { id } = req.params;               
 
         
-        const userData = { id };
+        const userData = { id: parseInt(id, 10) }
 
-        const user = await getUser(requesterUser, userData);
+        const user = await userService.getUser(requesterUser, userData);
 
         res.status(200).json({
             status: 'Success',
@@ -49,10 +49,10 @@ const updateUserController = async (req, res, next) => {
         res.status(200).json({
             status: 'Success',
             message: 'User updated successfully',
-            data: updatedUser
+            data: updateUser
         });
     } catch (error) {
-        
+        next(error);
     }
 };
 
@@ -72,11 +72,11 @@ const deleteUserController = async(req, res, next) => {
     }
 };
 
-const listUserController = async(req, res, next) => {
+const listUserController = async (req, res, next) => {
     try {
         const requesterUser = req.user; 
         
-        const users = await userService.listUsers(requesterUser);
+        const users = await userService.listUser(requesterUser);
 
         res.status(200).json({
             status: 'Success',

@@ -18,8 +18,10 @@ const createRoleController = async (req, res, next) => {
 
 const getRoleController = async (req, res, next) => {
     try {
+        const requesterUser = req.user;
         const roleId = parseInt(req.params.id, 10);
-        const role = await roleService.getRole(roleId);
+        
+        const role = await roleService.getRole(requesterUser, roleId);
 
         res.status(200).json({
             status: 'Success',
@@ -34,7 +36,7 @@ const updateRoleController = async (req, res, next) => {
     try {
         const requesterUser = req.user;
         const roleId = parseInt(req.params.id, 10);
-        const updatedData = req.body;
+        const updateData = req.body;
         const updatedRole = await roleService.updateRole(requesterUser, roleId, updateData);
 
         res.status(200).json({
@@ -64,8 +66,8 @@ const deleteRoleController = async (req, res, next) => {
 
 const listRoleController = async (req, res, next) => {
     try {
-        const requesterUser = req.user;
-        const roles = await roleService.listRoles(requestedUser);
+        const requestedUser = req.user;
+        const roles = await roleService.listRole(requestedUser);
 
         res.status(200).json({
             status: 'Success',

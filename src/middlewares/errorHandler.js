@@ -8,12 +8,17 @@ const errorHandler = (error, req, res, next) => {
         console.error(error.stack);
     }
 
-    res.status(statusCode).json({
+    const response = {
         status: 'error',
-        statusCode,
-        message,
-        ...(process.env.NODE_ENV === 'development' && {stack: error.stack})
-    });
+        statusCode: statusCode,
+        message: message
+    };
+
+    if (process.env.NODE_ENV === 'development' && error.stack) {
+        response.stack = error.stack;
+    }
+
+    res.status(statusCode).json(response);
 };
 
 module.exports = errorHandler;

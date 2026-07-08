@@ -16,16 +16,16 @@ async function main() {
         { code: 'Update User', description: 'Change user name or email or password' },
         { code: 'Delete User', description: 'Delete user' },
         { code: 'List User', description: 'View the list of existing users' },
+        { code: 'ChangeUserStatus', description: 'Change the status of an user' },
         { code: 'Create Role', description: 'Create a role and defined his hierarchy level' },
         { code: 'Get Role', description: 'View the name, hierarchy level and permissions of a role' },
         { code: 'Update Role', description: 'Change the role, hierarchy level and permissions of a role' },
         { code: 'Delete Role', description: 'Delete role' },
-        { code: 'List Role', description: 'View the list of existing roles, and his permissions'},
+        { code: 'List Permission', description: 'View the list of existing permissions'},
+        { code: 'List Role', description: 'View the list of existing roles and his permissions'},
         { code: 'Get Permission', description: 'View the permission name and its description' },
         { code: 'Update Permission', description: 'Change the name or description of a permission' },
-        { code: 'Delete Permission', description: 'Delete a permission' },
-        { code: 'List Permission', description: 'View the list of existing permissions'},
-        { code: 'ChangeUserStatus', description: 'Change the status of an user' }
+        { code: 'Delete Permission', description: 'Delete a permission' }
     ];
 
     for (const perm of permissionsData) {

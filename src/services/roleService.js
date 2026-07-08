@@ -1,9 +1,10 @@
 const prisma = require('./prismaClient');
-const { validateHierarchy } = require('../utils/helpers');
+const { validateHierarchy } = require('../utils/operationValidation');
 
 const createRole = async(requesterUser, roleData) => {
     const { name, hierarchyLevel, permissions } = roleData;
-    validateHierarchy(hierarchyLevel, permission);
+    
+    validateHierarchy(requesterUser, hierarchyLevel);
 
     const existingRole = await prisma.role.findUnique({ where: {name} });
     if (existingRole) {
@@ -12,9 +13,10 @@ const createRole = async(requesterUser, roleData) => {
 
     const newRole = await prisma.role.create({
         data: {
-            name, hierarchyLevel,
+            name, 
+            hierarchyLevel,
             permissions: {
-                connect: permissions ? permissions.map(id => ({ id })): []
+                connect: permissions ? permissions.map(code => ({ code })): []
             }
         },
         include: { permissions: true }
@@ -62,7 +64,7 @@ const updateRole = async (requesterUser, roleId, updateData) => {
             name: name !== undefined ? name : targetRole.name,
             hierarchyLevel: hierarchyLevel !== undefined ? hierarchyLevel: targetRole.hierarchyLevel,
             permissions: permissions ? {
-                set: permissions.map(id => ({ id }))
+                set: permissions.map(p => ({ code: p }))
             } : undefined
         },
         include: { permissions: true }

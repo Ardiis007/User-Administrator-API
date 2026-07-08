@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const prisma = require('./prismaClient');
-const { validateHierarchy, isSelf } = require('./utils/operationValidation');
+const { validateHierarchy, isSelf } = require('../utils/operationValidation');
 
 const createUser = async (requesterUser, userData) => {
     const { name, email, password, roleId } = userData;
@@ -102,18 +102,25 @@ const updateUser = async (requesterUser, targetUserId, updateData) => {
         throw { statusCode: 403, message: 'You can not change the ROOT user role' };
     }
 
+    let hashedPassword = targetUser.password;
+    if (password !== undefined && password !== null && password !== '') {
+        const salt = await bcrypt.genSalt(10);
+        hashedPassword = await bcrypt.hash(password, salt);
+    }
+
     return await prisma.user.update({
         where: { id: targetUserId },
         data: {
             name: name !== undefined ? name : targetUser.name,
             email: email !== undefined ? email : targetUser.email,
-            password: hashedPassword,
+            password: hashedPassword !== undefined ? hashedPassword : targetUser.password,
             status: status !== undefined ? status : targetUser.status,
             roleId: roleId !== undefined ? roleId : targetUser.roleId
         },
         select: { id: true, name: true, email: true, status: true, roleId: true }
     });
 };
+
 
 const deleteUser = async (requesterUser, targetUserId) => {
     const targetUser = await prisma.user.findUnique({
