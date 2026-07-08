@@ -5,7 +5,7 @@ PROJECT EXPORT FOR LLMs
 PROJECT INFORMATION:
 --------------------------------------------------
 Project Name: UserAdminAPI
-Generated On: 2026-07-08 15:11:50 (America/Bogota / GMT-05:00)
+Generated On: 2026-07-08 15:19:03 (America/Bogota / GMT-05:00)
 Total Files Processed: 29
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
@@ -30,8 +30,8 @@ PROJECT STRUCTURE
 │   ├── 📄 schema.prisma (1.01 KB)
 │   └── 📄 seed.js (3.38 KB)
 ├── 📁 public/
-│   ├── 📄 index.html (2.99 KB)
-│   └── 📄 main.js (4.54 KB)
+│   ├── 📄 index.html (8.53 KB)
+│   └── 📄 main.js (13.25 KB)
 ├── 📁 src/
 │   ├── 📁 controllers/
 │   │   ├── 📄 authController.js (1019 B)
@@ -69,7 +69,7 @@ Total Files: 29
 Total Directories: 10
 Text Files: 28
 Binary Files: 1
-Total Size: 139.34 KB
+Total Size: 153.59 KB
 
 FILE TYPES DISTRIBUTION:
 ------------------------------
@@ -323,15 +323,15 @@ FILE: public/index.html
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 2.99 KB
+Size: 8.53 KB
 Extension: .html
 Language: html
 Location: public/index.html
 Relative Path: public
 Created: 2026-07-08 14:59:51 (America/Bogota / GMT-05:00)
-Modified: 2026-07-08 15:11:49 (America/Bogota / GMT-05:00)
-MD5: db01df9f572a0015289f52ddd3032804
-SHA256: 0f656d5a2eeae4caed8b830a180ab80e914d44e9c927a8d8d9807bd0baeddba0
+Modified: 2026-07-08 15:19:02 (America/Bogota / GMT-05:00)
+MD5: 8cccae9241094f4c0ce1ec7e68c87196
+SHA256: 2290e0e22c623d0238cbedcd00a5512f7ab5a63d9942787b8d710bc12688a468
 Encoding: ASCII
 
 FILE CONTENT:
@@ -341,24 +341,42 @@ FILE CONTENT:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UserAdmin - Dashboard</title>
+    <title>UserAdmin - Dashboard Total</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; }
-        .container { max-width: 800px; margin: 50px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1, h2 { color: #333; }
-        .hidden { display: none; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #333; }
+        .hidden { display: none !important; }
+        
+        /* Formularios */
         .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; color: #666; }
-        .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #666; font-weight: bold;}
+        .form-group input, .form-group select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        .form-panel { background: #f9f9f9; padding: 15px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 20px; }
+        
+        /* Botones */
+        button { background-color: #007bff; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-right: 5px; }
         button:hover { background-color: #0056b3; }
-        .error { color: red; margin-bottom: 10px; font-size: 14px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #c82333; }
+        .btn-success { background-color: #28a745; }
+        .btn-success:hover { background-color: #218838; }
+        .btn-warning { background-color: #ffc107; color: black; }
+        .btn-warning:hover { background-color: #e0a800; }
+        
+        /* Navegación */
+        .nav-tabs { display: flex; border-bottom: 2px solid #ddd; margin-bottom: 20px; }
+        .nav-tabs button { background: none; color: #333; border: none; padding: 10px 20px; font-size: 16px; border-radius: 0; margin: 0; opacity: 0.7; }
+        .nav-tabs button.active { border-bottom: 3px solid #007bff; opacity: 1; font-weight: bold; }
+        
+        /* Tablas */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; font-size: 14px; }
         th { background-color: #f8f9fa; }
-        .status-active { color: green; font-weight: bold; }
-        .status-inactive { color: red; font-weight: bold; }
-        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; }
+        .error { color: red; margin-bottom: 10px; font-size: 14px; }
+        .success { color: green; margin-bottom: 10px; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -382,26 +400,115 @@ FILE CONTENT:
 
     <div id="dashboardSection" class="hidden">
         <div class="header">
-            <h2>Panel de Administración de Usuarios</h2>
-            <button id="logoutBtn" style="background-color: #dc3545;">Cerrar Sesión</button>
+            <h2>Panel de Administración</h2>
+            <button id="logoutBtn" class="btn-danger">Cerrar Sesión</button>
         </div>
-        
-        <button id="loadUsersBtn">Recargar Usuarios</button>
-        <div id="dashboardError" class="error hidden" style="margin-top: 10px;"></div>
-        
-        <table id="usersTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody id="usersTableBody">
-                </tbody>
-        </table>
+
+        <div id="globalMessage" class="hidden"></div>
+
+        <div class="nav-tabs">
+            <button id="tab-users" class="active" onclick="switchTab('users')">Usuarios</button>
+            <button id="tab-roles" onclick="switchTab('roles')">Roles</button>
+            <button id="tab-permissions" onclick="switchTab('permissions')">Permisos</button>
+        </div>
+
+        <div id="view-users" class="tab-content">
+            <button class="btn-success" onclick="toggleForm('userFormContainer')">+ Crear Usuario</button>
+            
+            <div id="userFormContainer" class="form-panel hidden">
+                <h3 id="userFormTitle">Crear/Editar Usuario</h3>
+                <form id="userForm">
+                    <input type="hidden" id="userId">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" id="userName" required minlength="8">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña (Dejar en blanco si no se cambia al editar)</label>
+                        <input type="password" id="userPassword" minlength="10">
+                    </div>
+                    <div class="form-group">
+                        <label>Rol</label>
+                        <select id="userRole" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <select id="userStatus">
+                            <option value="true">Activo</option>
+                            <option value="false">Inactivo</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-success">Guardar Usuario</button>
+                    <button type="button" class="btn-danger" onclick="toggleForm('userFormContainer')">Cancelar</button>
+                </form>
+            </div>
+
+            <table>
+                <thead><tr><th>ID</th><th>Nombre</th><th>Email</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr></thead>
+                <tbody id="usersTableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="view-roles" class="tab-content hidden">
+            <button class="btn-success" onclick="toggleForm('roleFormContainer')">+ Crear Rol</button>
+            
+            <div id="roleFormContainer" class="form-panel hidden">
+                <h3 id="roleFormTitle">Crear/Editar Rol</h3>
+                <form id="roleForm">
+                    <input type="hidden" id="roleId">
+                    <div class="form-group">
+                        <label>Nombre del Rol</label>
+                        <input type="text" id="roleName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nivel de Jerarquía (Menor número = Más poder)</label>
+                        <input type="number" id="roleHierarchy" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Permisos (Mantén presionado Ctrl/Cmd para seleccionar varios)</label>
+                        <select id="rolePermissions" multiple size="6" required style="height: auto;"></select>
+                    </div>
+                    <button type="submit" class="btn-success">Guardar Rol</button>
+                    <button type="button" class="btn-danger" onclick="toggleForm('roleFormContainer')">Cancelar</button>
+                </form>
+            </div>
+
+            <table>
+                <thead><tr><th>ID</th><th>Nombre</th><th>Jerarquía</th><th>Permisos</th><th>Acciones</th></tr></thead>
+                <tbody id="rolesTableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="view-permissions" class="tab-content hidden">
+            <p><i>Nota: Los permisos base se gestionan por código (seed), pero puedes actualizar su descripción.</i></p>
+            
+            <div id="permissionFormContainer" class="form-panel hidden">
+                <h3 id="permissionFormTitle">Editar Permiso</h3>
+                <form id="permissionForm">
+                    <input type="hidden" id="permissionId">
+                    <div class="form-group">
+                        <label>Código</label>
+                        <input type="text" id="permissionCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <input type="text" id="permissionDesc">
+                    </div>
+                    <button type="submit" class="btn-success">Guardar Permiso</button>
+                    <button type="button" class="btn-danger" onclick="toggleForm('permissionFormContainer')">Cancelar</button>
+                </form>
+            </div>
+
+            <table>
+                <thead><tr><th>ID</th><th>Código</th><th>Descripción</th><th>Acciones</th></tr></thead>
+                <tbody id="permissionsTableBody"></tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 
@@ -417,149 +524,349 @@ FILE: public/main.js
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 4.54 KB
+Size: 13.25 KB
 Extension: .js
 Language: javascript
 Location: public/main.js
 Relative Path: public
 Created: 2026-07-08 15:01:38 (America/Bogota / GMT-05:00)
-Modified: 2026-07-08 15:01:42 (America/Bogota / GMT-05:00)
-MD5: cd397def8780289fbe945c543e63887c
-SHA256: 64641b726247380098809e312572f8c1a1d10842c7f3f791284cf94cec4d24e0
+Modified: 2026-07-08 15:19:02 (America/Bogota / GMT-05:00)
+MD5: bc09280fb2e14471a0d4cbbdcf1b609a
+SHA256: e8d7b05823b760383dad1ab2d84f7ae5cb155548c186ea7cf45b31984fc89221
 Encoding: UTF-8
 
 FILE CONTENT:
 ----------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-    const loginSection = document.getElementById('loginSection');
-    const dashboardSection = document.getElementById('dashboardSection');
-    const loginForm = document.getElementById('loginForm');
-    const loginError = document.getElementById('loginError');
-    const dashboardError = document.getElementById('dashboardError');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const loadUsersBtn = document.getElementById('loadUsersBtn');
-    const usersTableBody = document.getElementById('usersTableBody');
+    // --- VARIABLES GLOBALES Y ELEMENTOS ---
+    const tokenKey = 'token';
+    const globalMessage = document.getElementById('globalMessage');
+    
+    // Selectores para combos
+    const userRoleSelect = document.getElementById('userRole');
+    const rolePermissionsSelect = document.getElementById('rolePermissions');
 
-    // Comprobar si ya hay una sesión activa al cargar la página
     checkAuth();
 
+    // --- SISTEMA DE AUTENTICACIÓN ---
     function checkAuth() {
-        const token = localStorage.getItem('token');
-        if (token) {
-            showDashboard();
+        if (localStorage.getItem(tokenKey)) {
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('dashboardSection').classList.remove('hidden');
+            loadAllData();
         } else {
-            showLogin();
+            document.getElementById('dashboardSection').classList.add('hidden');
+            document.getElementById('loginSection').classList.remove('hidden');
         }
     }
 
-    // Manejar el formulario de login
-    loginForm.addEventListener('submit', async (e) => {
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
         e.preventDefault();
-        loginError.classList.add('hidden');
-        
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('loginError');
 
         try {
-            // Hacemos la petición a nuestra propia API
-            const response = await fetch('/api/auth/login', {
+            const res = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
             });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                // Guardar el token de acceso
-                localStorage.setItem('token', data.token);
-                showDashboard();
+            const data = await res.json();
+            if (res.ok) {
+                localStorage.setItem(tokenKey, data.token);
+                checkAuth();
             } else {
-                loginError.textContent = data.message || 'Error en las credenciales';
-                loginError.classList.remove('hidden');
+                errorDiv.textContent = data.message || 'Error al iniciar sesión';
+                errorDiv.classList.remove('hidden');
             }
         } catch (error) {
-            loginError.textContent = 'Error de conexión con el servidor.';
-            loginError.classList.remove('hidden');
+            errorDiv.textContent = 'Error de conexión';
+            errorDiv.classList.remove('hidden');
         }
     });
 
-    // Cerrar sesión
-    logoutBtn.addEventListener('click', () => {
-        localStorage.removeItem('token');
-        showLogin();
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+        localStorage.removeItem(tokenKey);
+        checkAuth();
     });
 
-    // Cargar usuarios
-    loadUsersBtn.addEventListener('click', loadUsers);
-
-    async function loadUsers() {
-        dashboardError.classList.add('hidden');
-        const token = localStorage.getItem('token');
+    // --- FUNCIÓN BASE PARA LLAMADAS A LA API ---
+    async function apiFetch(endpoint, method = 'GET', body = null) {
+        const token = localStorage.getItem(tokenKey);
+        const headers = { 'Authorization': `Bearer ${token}` };
+        const options = { method, headers };
         
-        try {
-            const response = await fetch('/api/users', {
-                method: 'GET',
-                headers: { 
-                    'Authorization': `Bearer ${token}` 
-                }
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                renderUsers(data.data);
-            } else {
-                dashboardError.textContent = data.message || 'No tienes permisos para ver usuarios.';
-                dashboardError.classList.remove('hidden');
-                
-                // Si el token expiró (401/403), cerramos sesión
-                if (response.status === 401 || response.status === 403) {
-                    localStorage.removeItem('token');
-                    setTimeout(showLogin, 2000);
-                }
-            }
-        } catch (error) {
-            dashboardError.textContent = 'Error al cargar los usuarios.';
-            dashboardError.classList.remove('hidden');
+        if (body) {
+            headers['Content-Type'] = 'application/json';
+            options.body = JSON.stringify(body);
         }
+
+        const response = await fetch(`/api${endpoint}`, options);
+        const data = await response.json();
+
+        if (response.status === 401 || response.status === 403) {
+            showMessage(data.message, 'error');
+            if (data.message.includes('token')) {
+                localStorage.removeItem(tokenKey);
+                checkAuth();
+            }
+            throw new Error(data.message);
+        }
+
+        if (!response.ok) {
+            showMessage(data.message || data.errors?.[0] || 'Error en la operación', 'error');
+            throw new Error(data.message);
+        }
+
+        return data;
     }
 
-    function renderUsers(users) {
-        usersTableBody.innerHTML = '';
-        if (users.length === 0) {
-            usersTableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No hay usuarios para mostrar</td></tr>';
-            return;
-        }
+    function showMessage(msg, type = 'success') {
+        globalMessage.textContent = msg;
+        globalMessage.className = type === 'error' ? 'error' : 'success';
+        globalMessage.classList.remove('hidden');
+        setTimeout(() => globalMessage.classList.add('hidden'), 5000);
+    }
 
-        users.forEach(user => {
-            const statusClass = user.status ? 'status-active' : 'status-inactive';
-            const statusText = user.status ? 'Activo' : 'Inactivo';
+    window.switchTab = (tabName) => {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.nav-tabs button').forEach(el => el.classList.remove('active'));
+        
+        document.getElementById(`view-${tabName}`).classList.remove('hidden');
+        document.getElementById(`tab-${tabName}`).classList.add('active');
+        
+        if(tabName === 'users') loadUsers();
+        if(tabName === 'roles') loadRoles();
+        if(tabName === 'permissions') loadPermissions();
+    };
+
+    window.toggleForm = (containerId) => {
+        const formContainer = document.getElementById(containerId);
+        formContainer.classList.toggle('hidden');
+        if(!formContainer.classList.contains('hidden')) {
+            formContainer.querySelector('form').reset();
+            // Limpiar IDs ocultos
+            formContainer.querySelectorAll('input[type="hidden"]').forEach(el => el.value = ''); 
+        }
+    };
+
+    // --- CARGAR DATOS INICIALES NECESARIOS PARA FORMULARIOS ---
+    async function loadAllData() {
+        loadUsers();
+        // Cargamos roles y permisos para llenar los selects (comboboxes)
+        try {
+            const rolesRes = await apiFetch('/roles');
+            populateSelect(userRoleSelect, rolesRes.data, 'id', 'name');
             
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${user.id}</td>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td>${user.role ? user.role.name : 'N/A'}</td>
-                <td class="${statusClass}">${statusText}</td>
-            `;
-            usersTableBody.appendChild(tr);
+            const permRes = await apiFetch('/permissions');
+            populateSelect(rolePermissionsSelect, permRes.data, 'code', 'code');
+        } catch (e) { /* Error manejado en apiFetch */ }
+    }
+
+    function populateSelect(selectElement, items, valueKey, textKey) {
+        selectElement.innerHTML = '';
+        items.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item[valueKey];
+            option.textContent = item[textKey];
+            selectElement.appendChild(option);
         });
     }
 
-    function showDashboard() {
-        loginSection.classList.add('hidden');
-        dashboardSection.classList.remove('hidden');
-        loadUsers(); // Cargar la tabla automáticamente al entrar
+    // ==========================================
+    // ============ LÓGICA USUARIOS =============
+    // ==========================================
+    async function loadUsers() {
+        try {
+            const res = await apiFetch('/users');
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = '';
+            res.data.forEach(u => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${u.id}</td><td>${u.name}</td><td>${u.email}</td>
+                        <td>${u.role?.name}</td>
+                        <td style="color:${u.status?'green':'red'}">${u.status?'Activo':'Inactivo'}</td>
+                        <td>
+                            <button class="btn-warning" onclick='editUser(${JSON.stringify(u)})'>Editar</button>
+                            <button class="btn-danger" onclick="deleteUser(${u.id})">Borrar</button>
+                        </td>
+                    </tr>`;
+            });
+        } catch(e) {}
     }
 
-    function showLogin() {
-        dashboardSection.classList.add('hidden');
-        loginSection.classList.remove('hidden');
-        loginForm.reset();
-        usersTableBody.innerHTML = '';
+    document.getElementById('userForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('userId').value;
+        const payload = {
+            name: document.getElementById('userName').value,
+            email: document.getElementById('userEmail').value,
+            roleId: parseInt(document.getElementById('userRole').value),
+            status: document.getElementById('userStatus').value === 'true'
+        };
+        
+        const pwd = document.getElementById('userPassword').value;
+        if (pwd) payload.password = pwd; // Solo enviar si se digitó algo
+
+        try {
+            if (id) await apiFetch(`/users/${id}`, 'PUT', payload);
+            else {
+                if(!pwd) return showMessage('La contraseña es obligatoria para nuevos usuarios', 'error');
+                await apiFetch('/users', 'POST', payload);
+            }
+            showMessage(`Usuario ${id ? 'actualizado' : 'creado'} con éxito`);
+            toggleForm('userFormContainer');
+            loadUsers();
+        } catch(e) {}
+    });
+
+    window.editUser = (user) => {
+        toggleForm('userFormContainer');
+        document.getElementById('userFormTitle').textContent = 'Editar Usuario';
+        document.getElementById('userId').value = user.id;
+        document.getElementById('userName').value = user.name;
+        document.getElementById('userEmail').value = user.email;
+        document.getElementById('userRole').value = user.role.id;
+        document.getElementById('userStatus').value = user.status;
+        document.getElementById('userPassword').value = ''; 
+    };
+
+    window.deleteUser = async (id) => {
+        if(confirm('¿Seguro que quieres eliminar este usuario?')) {
+            try {
+                await apiFetch(`/users/${id}`, 'DELETE');
+                showMessage('Usuario eliminado');
+                loadUsers();
+            } catch(e) {}
+        }
+    };
+
+    // ==========================================
+    // ============= LÓGICA ROLES ===============
+    // ==========================================
+    async function loadRoles() {
+        try {
+            const res = await apiFetch('/roles');
+            const tbody = document.getElementById('rolesTableBody');
+            tbody.innerHTML = '';
+            res.data.forEach(r => {
+                const perms = r.permissions.map(p => p.code).join(', ');
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${r.id}</td><td>${r.name}</td><td>${r.hierarchyLevel}</td>
+                        <td style="font-size: 11px;">${perms}</td>
+                        <td>
+                            <button class="btn-warning" onclick='editRole(${JSON.stringify(r)})'>Editar</button>
+                            <button class="btn-danger" onclick="deleteRole(${r.id})">Borrar</button>
+                        </td>
+                    </tr>`;
+            });
+        } catch(e) {}
     }
+
+    document.getElementById('roleForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('roleId').value;
+        
+        // Obtener permisos seleccionados en el select multiple
+        const selectedPerms = Array.from(document.getElementById('rolePermissions').selectedOptions).map(opt => opt.value);
+
+        const payload = {
+            name: document.getElementById('roleName').value,
+            hierarchyLevel: parseInt(document.getElementById('roleHierarchy').value),
+            permissions: selectedPerms
+        };
+
+        try {
+            if (id) await apiFetch(`/roles/${id}`, 'PUT', payload);
+            else await apiFetch('/roles', 'POST', payload);
+            showMessage(`Rol ${id ? 'actualizado' : 'creado'} con éxito`);
+            toggleForm('roleFormContainer');
+            loadRoles();
+            loadAllData(); // Recargar data global por si se editó un rol usado en usuarios
+        } catch(e) {}
+    });
+
+    window.editRole = (role) => {
+        toggleForm('roleFormContainer');
+        document.getElementById('roleFormTitle').textContent = 'Editar Rol';
+        document.getElementById('roleId').value = role.id;
+        document.getElementById('roleName').value = role.name;
+        document.getElementById('roleHierarchy').value = role.hierarchyLevel;
+        
+        // Marcar permisos seleccionados
+        const permCodes = role.permissions.map(p => p.code);
+        Array.from(document.getElementById('rolePermissions').options).forEach(opt => {
+            opt.selected = permCodes.includes(opt.value);
+        });
+    };
+
+    window.deleteRole = async (id) => {
+        if(confirm('¿Seguro que quieres eliminar este rol? Los usuarios pasarán a ser USER.')) {
+            try {
+                await apiFetch(`/roles/${id}`, 'DELETE');
+                showMessage('Rol eliminado');
+                loadRoles();
+            } catch(e) {}
+        }
+    };
+
+    // ==========================================
+    // =========== LÓGICA PERMISOS ==============
+    // ==========================================
+    async function loadPermissions() {
+        try {
+            const res = await apiFetch('/permissions');
+            const tbody = document.getElementById('permissionsTableBody');
+            tbody.innerHTML = '';
+            res.data.forEach(p => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${p.id}</td><td>${p.code}</td><td>${p.description || ''}</td>
+                        <td>
+                            <button class="btn-warning" onclick='editPermission(${JSON.stringify(p)})'>Editar</button>
+                            <button class="btn-danger" onclick="deletePermission(${p.id})">Borrar</button>
+                        </td>
+                    </tr>`;
+            });
+        } catch(e) {}
+    }
+
+    document.getElementById('permissionForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('permissionId').value;
+        const payload = {
+            code: document.getElementById('permissionCode').value,
+            description: document.getElementById('permissionDesc').value
+        };
+
+        try {
+            if (id) await apiFetch(`/permissions/${id}`, 'PUT', payload);
+            showMessage('Permiso actualizado con éxito');
+            toggleForm('permissionFormContainer');
+            loadPermissions();
+            loadAllData(); // Recargar por si cambió un código de permiso
+        } catch(e) {}
+    });
+
+    window.editPermission = (perm) => {
+        toggleForm('permissionFormContainer');
+        document.getElementById('permissionId').value = perm.id;
+        document.getElementById('permissionCode').value = perm.code;
+        document.getElementById('permissionDesc').value = perm.description;
+    };
+
+    window.deletePermission = async (id) => {
+        if(confirm('Cuidado: Borrar un permiso puede romper el sistema de roles si está en uso. ¿Continuar?')) {
+            try {
+                await apiFetch(`/permissions/${id}`, 'DELETE');
+                showMessage('Permiso eliminado');
+                loadPermissions();
+            } catch(e) {}
+        }
+    };
 });
 ================================================================================
 

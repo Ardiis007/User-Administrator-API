@@ -3,24 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UserAdmin - Dashboard</title>
+    <title>UserAdmin - Dashboard Total</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; }
-        .container { max-width: 800px; margin: 50px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h1, h2 { color: #333; }
-        .hidden { display: none; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1, h2, h3 { color: #333; }
+        .hidden { display: none !important; }
+        
+        /* Formularios */
         .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; color: #666; }
-        .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #666; font-weight: bold;}
+        .form-group input, .form-group select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        .form-panel { background: #f9f9f9; padding: 15px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 20px; }
+        
+        /* Botones */
+        button { background-color: #007bff; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-right: 5px; }
         button:hover { background-color: #0056b3; }
-        .error { color: red; margin-bottom: 10px; font-size: 14px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-danger:hover { background-color: #c82333; }
+        .btn-success { background-color: #28a745; }
+        .btn-success:hover { background-color: #218838; }
+        .btn-warning { background-color: #ffc107; color: black; }
+        .btn-warning:hover { background-color: #e0a800; }
+        
+        /* Navegación */
+        .nav-tabs { display: flex; border-bottom: 2px solid #ddd; margin-bottom: 20px; }
+        .nav-tabs button { background: none; color: #333; border: none; padding: 10px 20px; font-size: 16px; border-radius: 0; margin: 0; opacity: 0.7; }
+        .nav-tabs button.active { border-bottom: 3px solid #007bff; opacity: 1; font-weight: bold; }
+        
+        /* Tablas */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; font-size: 14px; }
         th { background-color: #f8f9fa; }
-        .status-active { color: green; font-weight: bold; }
-        .status-inactive { color: red; font-weight: bold; }
-        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; }
+        .error { color: red; margin-bottom: 10px; font-size: 14px; }
+        .success { color: green; margin-bottom: 10px; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -44,26 +62,115 @@
 
     <div id="dashboardSection" class="hidden">
         <div class="header">
-            <h2>Panel de Administración de Usuarios</h2>
-            <button id="logoutBtn" style="background-color: #dc3545;">Cerrar Sesión</button>
+            <h2>Panel de Administración</h2>
+            <button id="logoutBtn" class="btn-danger">Cerrar Sesión</button>
         </div>
-        
-        <button id="loadUsersBtn">Recargar Usuarios</button>
-        <div id="dashboardError" class="error hidden" style="margin-top: 10px;"></div>
-        
-        <table id="usersTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Rol</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody id="usersTableBody">
-                </tbody>
-        </table>
+
+        <div id="globalMessage" class="hidden"></div>
+
+        <div class="nav-tabs">
+            <button id="tab-users" class="active" onclick="switchTab('users')">Usuarios</button>
+            <button id="tab-roles" onclick="switchTab('roles')">Roles</button>
+            <button id="tab-permissions" onclick="switchTab('permissions')">Permisos</button>
+        </div>
+
+        <div id="view-users" class="tab-content">
+            <button class="btn-success" onclick="toggleForm('userFormContainer')">+ Crear Usuario</button>
+            
+            <div id="userFormContainer" class="form-panel hidden">
+                <h3 id="userFormTitle">Crear/Editar Usuario</h3>
+                <form id="userForm">
+                    <input type="hidden" id="userId">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" id="userName" required minlength="8">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="userEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña (Dejar en blanco si no se cambia al editar)</label>
+                        <input type="password" id="userPassword" minlength="10">
+                    </div>
+                    <div class="form-group">
+                        <label>Rol</label>
+                        <select id="userRole" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <select id="userStatus">
+                            <option value="true">Activo</option>
+                            <option value="false">Inactivo</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-success">Guardar Usuario</button>
+                    <button type="button" class="btn-danger" onclick="toggleForm('userFormContainer')">Cancelar</button>
+                </form>
+            </div>
+
+            <table>
+                <thead><tr><th>ID</th><th>Nombre</th><th>Email</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr></thead>
+                <tbody id="usersTableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="view-roles" class="tab-content hidden">
+            <button class="btn-success" onclick="toggleForm('roleFormContainer')">+ Crear Rol</button>
+            
+            <div id="roleFormContainer" class="form-panel hidden">
+                <h3 id="roleFormTitle">Crear/Editar Rol</h3>
+                <form id="roleForm">
+                    <input type="hidden" id="roleId">
+                    <div class="form-group">
+                        <label>Nombre del Rol</label>
+                        <input type="text" id="roleName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nivel de Jerarquía (Menor número = Más poder)</label>
+                        <input type="number" id="roleHierarchy" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Permisos (Mantén presionado Ctrl/Cmd para seleccionar varios)</label>
+                        <select id="rolePermissions" multiple size="6" required style="height: auto;"></select>
+                    </div>
+                    <button type="submit" class="btn-success">Guardar Rol</button>
+                    <button type="button" class="btn-danger" onclick="toggleForm('roleFormContainer')">Cancelar</button>
+                </form>
+            </div>
+
+            <table>
+                <thead><tr><th>ID</th><th>Nombre</th><th>Jerarquía</th><th>Permisos</th><th>Acciones</th></tr></thead>
+                <tbody id="rolesTableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="view-permissions" class="tab-content hidden">
+            <p><i>Nota: Los permisos base se gestionan por código (seed), pero puedes actualizar su descripción.</i></p>
+            
+            <div id="permissionFormContainer" class="form-panel hidden">
+                <h3 id="permissionFormTitle">Editar Permiso</h3>
+                <form id="permissionForm">
+                    <input type="hidden" id="permissionId">
+                    <div class="form-group">
+                        <label>Código</label>
+                        <input type="text" id="permissionCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <input type="text" id="permissionDesc">
+                    </div>
+                    <button type="submit" class="btn-success">Guardar Permiso</button>
+                    <button type="button" class="btn-danger" onclick="toggleForm('permissionFormContainer')">Cancelar</button>
+                </form>
+            </div>
+
+            <table>
+                <thead><tr><th>ID</th><th>Código</th><th>Descripción</th><th>Acciones</th></tr></thead>
+                <tbody id="permissionsTableBody"></tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 
