@@ -47,7 +47,7 @@ const updateRole = async (requesterUser, roleId, updateData) => {
     const targetRole = await prisma.role.findUnique({ where: { id: roleId } });
     if (!targetRole) throw { statusCode: 403, message: 'Role not found' };
 
-    if (targetRole.name === 'ROOT') { // 👈 protección que faltaba
+    if (targetRole.name === 'ROOT') {
         throw { statusCode: 403, message: 'The ROOT role can not be modified' };
     }
     

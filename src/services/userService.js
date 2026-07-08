@@ -104,11 +104,11 @@ const updateUser = async (requesterUser, targetUserId, updateData) => {
             if (!newRole) throw { statusCode: 404, message: 'The new role does not exist' };
             
             if (newRole.name === 'ROOT') {
-                throw { statusCode: 403, message: 'El rol ROOT no puede ser asignado.' };
+                throw { statusCode: 403, message: 'The role Root cannot be assigned.' };
             }
 
             if (newRole.hierarchyLevel <= requesterUser.role.hierarchyLevel) {
-                throw { statusCode: 403, message: 'No puedes asignar un rol con un nivel de jerarquía igual o mayor al tuyo.' };
+                throw { statusCode: 403, message: 'You cannot assign a role with a hierarchy level higher than or equal to your own' };
             }
         }
     }
