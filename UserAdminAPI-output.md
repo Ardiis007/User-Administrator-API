@@ -3,7 +3,7 @@
 ## 📊 Project Information
 
 - **Project Name**: `UserAdminAPI`
-- **Generated On**: 2026-07-08 15:19:03 (America/Bogota / GMT-05:00)
+- **Generated On**: 2026-07-08 16:00:08 (America/Bogota / GMT-05:00)
 - **Total Files Processed**: 29
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
@@ -28,12 +28,12 @@
 │   ├── 📄 schema.prisma (1.01 KB)
 │   └── 📄 seed.js (3.38 KB)
 ├── 📁 public/
-│   ├── 📄 index.html (8.53 KB)
-│   └── 📄 main.js (13.25 KB)
+│   ├── 📄 index.html (8.83 KB)
+│   └── 📄 main.js (13.49 KB)
 ├── 📁 src/
 │   ├── 📁 controllers/
 │   │   ├── 📄 authController.js (1019 B)
-│   │   ├── 📄 permissionController.js (1.79 KB)
+│   │   ├── 📄 permissionController.js (1.87 KB)
 │   │   ├── 📄 roleController.js (2.21 KB)
 │   │   └── 📄 userController.js (2.29 KB)
 │   ├── 📁 middlewares/
@@ -48,12 +48,12 @@
 │   │   ├── 📄 roleRoutes.js (828 B)
 │   │   └── 📄 userRoutes.js (890 B)
 │   ├── 📁 services/
-│   │   ├── 📄 permissionService.js (1.75 KB)
+│   │   ├── 📄 permissionService.js (2.06 KB)
 │   │   ├── 📄 prismaClient.js (315 B)
-│   │   ├── 📄 roleService.js (3.96 KB)
+│   │   ├── 📄 roleService.js (4.26 KB)
 │   │   └── 📄 userService.js (4.98 KB)
 │   ├── 📁 utils/
-│   │   └── 📄 operationValidation.js (474 B)
+│   │   └── 📄 operationValidation.js (988 B)
 │   ├── 📄 app.js (845 B)
 │   └── 📄 server.js (191 B)
 ├── 📄 package-lock.json (97.77 KB)
@@ -104,7 +104,7 @@
 | Total Directories | 10 |
 | Text Files | 28 |
 | Binary Files | 1 |
-| Total Size | 153.59 KB |
+| Total Size | 155.31 KB |
 
 ### 📄 File Types Distribution
 
@@ -351,15 +351,15 @@ The following files were not included in the text content:
 ### <a id="📄-public-index-html"></a>📄 `public/index.html`
 
 **File Info:**
-- **Size**: 8.53 KB
+- **Size**: 8.83 KB
 - **Extension**: `.html`
 - **Language**: `html`
 - **Location**: `public/index.html`
 - **Relative Path**: `public`
 - **Created**: 2026-07-08 14:59:51 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-08 15:19:02 (America/Bogota / GMT-05:00)
-- **MD5**: `8cccae9241094f4c0ce1ec7e68c87196`
-- **SHA256**: `2290e0e22c623d0238cbedcd00a5512f7ab5a63d9942787b8d710bc12688a468`
+- **Modified**: 2026-07-08 16:00:08 (America/Bogota / GMT-05:00)
+- **MD5**: `6d6b4cbac3febad290233142a63649cc`
+- **SHA256**: `449459930d312d806f5b86250d0fdb400993bc815866510ab0f238ed2ea824f6`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -444,7 +444,7 @@ The following files were not included in the text content:
         <div id="view-users" class="tab-content">
             <button class="btn-success" onclick="toggleForm('userFormContainer')">+ Crear Usuario</button>
             
-            <div id="userFormContainer" class="form-panel hidden">
+            <<div id="userFormContainer" class="form-panel hidden">
                 <h3 id="userFormTitle">Crear/Editar Usuario</h3>
                 <form id="userForm">
                     <input type="hidden" id="userId">
@@ -456,8 +456,13 @@ The following files were not included in the text content:
                         <label>Email</label>
                         <input type="email" id="userEmail" required>
                     </div>
+                    
+                    <div class="form-group" id="currentPasswordGroup">
+                        <label>Contraseña Actual (Requerida solo si cambias tu propia contraseña)</label>
+                        <input type="password" id="userCurrentPassword">
+                    </div>
                     <div class="form-group">
-                        <label>Contraseña (Dejar en blanco si no se cambia al editar)</label>
+                        <label>Nueva Contraseña (Dejar en blanco si no se cambia al editar)</label>
                         <input type="password" id="userPassword" minlength="10">
                     </div>
                     <div class="form-group">
@@ -551,15 +556,15 @@ The following files were not included in the text content:
 ### <a id="📄-public-main-js"></a>📄 `public/main.js`
 
 **File Info:**
-- **Size**: 13.25 KB
+- **Size**: 13.49 KB
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `public/main.js`
 - **Relative Path**: `public`
 - **Created**: 2026-07-08 15:01:38 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-08 15:19:02 (America/Bogota / GMT-05:00)
-- **MD5**: `bc09280fb2e14471a0d4cbbdcf1b609a`
-- **SHA256**: `e8d7b05823b760383dad1ab2d84f7ae5cb155548c186ea7cf45b31984fc89221`
+- **Modified**: 2026-07-08 16:00:05 (America/Bogota / GMT-05:00)
+- **MD5**: `5ba68cbf92451215ba365f9569f32a1f`
+- **SHA256**: `cd73f618d61acccc11564aacf7bc44ed0a75f09dfed247b0358c61ad1d07b62d`
 - **Encoding**: UTF-8
 
 **File code content:**
@@ -736,7 +741,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         
         const pwd = document.getElementById('userPassword').value;
-        if (pwd) payload.password = pwd; // Solo enviar si se digitó algo
+        const currentPwd = document.getElementById('userCurrentPassword').value;
+
+        if (pwd) {
+            payload.password = pwd; 
+            if (currentPwd) {
+                payload.currentPassword = currentPwd;
+            }
+        }
 
         try {
             if (id) await apiFetch(`/users/${id}`, 'PUT', payload);
@@ -759,6 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('userRole').value = user.role.id;
         document.getElementById('userStatus').value = user.status;
         document.getElementById('userPassword').value = ''; 
+        document.getElementById('userCurrentPassword').value = '';
     };
 
     window.deleteUser = async (id) => {
@@ -960,15 +973,15 @@ module.exports = login;
 ### <a id="📄-src-controllers-permissioncontroller-js"></a>📄 `src/controllers/permissionController.js`
 
 **File Info:**
-- **Size**: 1.79 KB
+- **Size**: 1.87 KB
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/controllers/permissionController.js`
 - **Relative Path**: `src/controllers`
 - **Created**: 2026-07-06 21:19:19 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-08 14:26:08 (America/Bogota / GMT-05:00)
-- **MD5**: `2ad74c2ed05da026e87576c9408334cc`
-- **SHA256**: `d922a345919a1928d508a63cd8a040228844d53e1f91a650e8cadc0a4849722c`
+- **Modified**: 2026-07-08 15:44:46 (America/Bogota / GMT-05:00)
+- **MD5**: `9478354c9063be78f4b33159faa2fc79`
+- **SHA256**: `c4dd2fd00dac0a9fdb709b279626aeff3ac99addb3216b8c4a9cf3efd04e5406`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -979,6 +992,7 @@ const { permission } = require('../services/prismaClient');
 
 const getPermissionController = async (req, res, next) => {
     try {
+
         const permissionId = parseInt(req.params.id, 10);
         const permission = await permissionService.getPermission(permissionId);
 
@@ -993,6 +1007,7 @@ const getPermissionController = async (req, res, next) => {
 
 const updatePermissionController = async (req, res, next) => {
     try {
+        const requestedUser = req.user;
         const permissionId = parseInt(req.params.id, 10);
         const updatedData = req.body;
         const updatedPermission = await permissionService.updatePermission(permissionId, updatedData);
@@ -1009,6 +1024,7 @@ const updatePermissionController = async (req, res, next) => {
 
 const deletePermissionController = async (req, res, next) => {
     try {
+        const requestedUser = req.user;
         const permissionId = parseInt(req.params.id, 10);
 
         const response = await permissionService.deletePermission(permissionId);
@@ -1667,15 +1683,15 @@ module.exports = router;
 ### <a id="📄-src-services-permissionservice-js"></a>📄 `src/services/permissionService.js`
 
 **File Info:**
-- **Size**: 1.75 KB
+- **Size**: 2.06 KB
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/services/permissionService.js`
 - **Relative Path**: `src/services`
 - **Created**: 2026-07-06 20:40:23 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-06 21:19:13 (America/Bogota / GMT-05:00)
-- **MD5**: `78fcbc177899f61695a94e7987b8d5f2`
-- **SHA256**: `cda63b3f425cc01c84be23b5b921b8d1b7fcd8a27c900a607c3db318e64ce238`
+- **Modified**: 2026-07-08 15:44:43 (America/Bogota / GMT-05:00)
+- **MD5**: `eabe20905598c4d19c20913a0b16417d`
+- **SHA256**: `b956a31c487e1066720f735092ad7d187db029ce10a53e6342d54259d7a09aa7`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -1693,9 +1709,13 @@ const getPermission = async (permissionId) => {
     return permission;
 };
 
-const updatePermission = async (permissionId, updateData) => {
+const updatePermission = async (requesterUser, permissionId, updateData) => {
     const { code, description } = updateData;
     
+    if (requesterUser.role.name !== 'ROOT') {
+        throw { statusCode: 403, message: 'Only ROOT can modify system permissions' };
+    }
+
     const targetPermission = await prisma.permission.findUnique({ 
         where: { id: permissionId } 
     });
@@ -1718,7 +1738,11 @@ const updatePermission = async (permissionId, updateData) => {
     return updatedPermission; 
 };
 
-const deletePermission = async (permissionId) => {
+const deletePermission = async (requesterUser, permissionId) => {
+    if (requesterUser.role.name !== 'ROOT') {
+        throw { statusCode: 403, message: 'Only ROOT can delete system permissions' };
+    }
+
     const targetPermission = await prisma.permission.findUnique({ 
         where: { id: permissionId } 
     });
@@ -1773,27 +1797,28 @@ module.exports = prisma;
 ### <a id="📄-src-services-roleservice-js"></a>📄 `src/services/roleService.js`
 
 **File Info:**
-- **Size**: 3.96 KB
+- **Size**: 4.26 KB
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/services/roleService.js`
 - **Relative Path**: `src/services`
 - **Created**: 2026-07-02 13:40:57 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-07 18:31:44 (America/Bogota / GMT-05:00)
-- **MD5**: `78fbee6ec52753ddc8f511c8871d338e`
-- **SHA256**: `aed9d34aefbfb9c398fefc3a14bcc47f7e98e9b1d29f7811f7091b58f3653a53`
+- **Modified**: 2026-07-08 15:44:44 (America/Bogota / GMT-05:00)
+- **MD5**: `39b1d1235ca6ac34f4e1c867985e51e1`
+- **SHA256**: `7238fb69ab6f1836590c342f5a82de5f158da56a1ac9db5038a85d700e6099b2`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```javascript
 const prisma = require('./prismaClient');
-const { validateHierarchy } = require('../utils/operationValidation');
+const { validateHierarchy, ensureGrantablePermissions } = require('../utils/operationValidation');
 
 const createRole = async(requesterUser, roleData) => {
     const { name, hierarchyLevel, permissions } = roleData;
     
     validateHierarchy(requesterUser, hierarchyLevel);
+    ensureGrantablePermissions(requesterUser, permissions);
 
     const existingRole = await prisma.role.findUnique({ where: {name} });
     if (existingRole) {
@@ -1833,13 +1858,17 @@ const updateRole = async (requesterUser, roleId, updateData) => {
     const { name, hierarchyLevel, permissions } = updateData;
 
     const targetRole = await prisma.role.findUnique({ where: { id: roleId } });
-    if (!targetRole) throw { statusCode: 403, message: 'The ROOT role can not be modified' };
+    if (!targetRole) throw { statusCode: 403, message: 'Role not found' };
 
+    if (targetRole.name === 'ROOT') { // 👈 protección que faltaba
+        throw { statusCode: 403, message: 'The ROOT role can not be modified' };
+    }
+    
     validateHierarchy(requesterUser, targetRole.hierarchyLevel);
-
     if (hierarchyLevel !== undefined) {
         validateHierarchy(requesterUser, hierarchyLevel);
     }
+    if (permissions) ensureGrantablePermissions(requesterUser, permissions);
 
     if (name && name !== targetRole.name) {
         const existingRole = await prisma.role.findUnique({ where: {name} });
@@ -2102,15 +2131,15 @@ module.exports = { createUser, getUser, updateUser, deleteUser, listUser }
 ### <a id="📄-src-utils-operationvalidation-js"></a>📄 `src/utils/operationValidation.js`
 
 **File Info:**
-- **Size**: 474 B
+- **Size**: 988 B
 - **Extension**: `.js`
 - **Language**: `javascript`
 - **Location**: `src/utils/operationValidation.js`
 - **Relative Path**: `src/utils`
 - **Created**: 2026-07-03 21:17:31 (America/Bogota / GMT-05:00)
-- **Modified**: 2026-07-03 21:24:11 (America/Bogota / GMT-05:00)
-- **MD5**: `4ca2afbc048800f92288fa596d7f3fff`
-- **SHA256**: `2d7fcaa304fb606fb39e04c0cb482d9b734230149519223bffba105bc2e58efb`
+- **Modified**: 2026-07-08 15:47:21 (America/Bogota / GMT-05:00)
+- **MD5**: `dac75910c1d378f14096d094473ba905`
+- **SHA256**: `de57154eca21d295da84fb5cb742f1d3fdbbc48a188b7f2753aaf5612fa4fda9`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -2128,7 +2157,21 @@ const isSelf = (requesterUserId, targetUserId) => {
     return requesterUserId === targetUserId;
 };
 
-module.exports = { validateHierarchy, isSelf };
+const ensureGrantablePermissions = (requesterUser, permissionCodes = []) => {
+    if (requesterUser.role.name === 'ROOT') return;
+
+    const ownedCodes = new Set(requesterUser.role.permissions.map(p => p.code));
+    const notOwned = permissionCodes.filter(code => !ownedCodes.has(code));
+
+    if (notOwned.length > 0) {
+        throw {
+            statusCode: 403,
+            message: `You cannot grant permissions that you do not possess: ${notOwned.join(', ')}`
+        };
+    }
+};
+
+module.exports = { validateHierarchy, isSelf, ensureGrantablePermissions };
 ```
 
 ---

@@ -10,9 +10,13 @@ const getPermission = async (permissionId) => {
     return permission;
 };
 
-const updatePermission = async (permissionId, updateData) => {
+const updatePermission = async (requesterUser, permissionId, updateData) => {
     const { code, description } = updateData;
     
+    if (requesterUser.role.name !== 'ROOT') {
+        throw { statusCode: 403, message: 'Only ROOT can modify system permissions' };
+    }
+
     const targetPermission = await prisma.permission.findUnique({ 
         where: { id: permissionId } 
     });
@@ -35,7 +39,11 @@ const updatePermission = async (permissionId, updateData) => {
     return updatedPermission; 
 };
 
-const deletePermission = async (permissionId) => {
+const deletePermission = async (requesterUser, permissionId) => {
+    if (requesterUser.role.name !== 'ROOT') {
+        throw { statusCode: 403, message: 'Only ROOT can delete system permissions' };
+    }
+
     const targetPermission = await prisma.permission.findUnique({ 
         where: { id: permissionId } 
     });

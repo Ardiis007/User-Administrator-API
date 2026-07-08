@@ -3,6 +3,7 @@ const { permission } = require('../services/prismaClient');
 
 const getPermissionController = async (req, res, next) => {
     try {
+
         const permissionId = parseInt(req.params.id, 10);
         const permission = await permissionService.getPermission(permissionId);
 
@@ -17,6 +18,7 @@ const getPermissionController = async (req, res, next) => {
 
 const updatePermissionController = async (req, res, next) => {
     try {
+        const requestedUser = req.user;
         const permissionId = parseInt(req.params.id, 10);
         const updatedData = req.body;
         const updatedPermission = await permissionService.updatePermission(permissionId, updatedData);
@@ -33,6 +35,7 @@ const updatePermissionController = async (req, res, next) => {
 
 const deletePermissionController = async (req, res, next) => {
     try {
+        const requestedUser = req.user;
         const permissionId = parseInt(req.params.id, 10);
 
         const response = await permissionService.deletePermission(permissionId);

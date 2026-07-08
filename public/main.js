@@ -169,7 +169,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         
         const pwd = document.getElementById('userPassword').value;
-        if (pwd) payload.password = pwd; // Solo enviar si se digitó algo
+        const currentPwd = document.getElementById('userCurrentPassword').value;
+
+        if (pwd) {
+            payload.password = pwd; 
+            if (currentPwd) {
+                payload.currentPassword = currentPwd;
+            }
+        }
 
         try {
             if (id) await apiFetch(`/users/${id}`, 'PUT', payload);
@@ -192,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('userRole').value = user.role.id;
         document.getElementById('userStatus').value = user.status;
         document.getElementById('userPassword').value = ''; 
+        document.getElementById('userCurrentPassword').value = '';
     };
 
     window.deleteUser = async (id) => {

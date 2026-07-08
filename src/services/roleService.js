@@ -1,10 +1,11 @@
 const prisma = require('./prismaClient');
-const { validateHierarchy } = require('../utils/operationValidation');
+const { validateHierarchy, ensureGrantablePermissions } = require('../utils/operationValidation');
 
 const createRole = async(requesterUser, roleData) => {
     const { name, hierarchyLevel, permissions } = roleData;
     
     validateHierarchy(requesterUser, hierarchyLevel);
+    ensureGrantablePermissions(requesterUser, permissions);
 
     const existingRole = await prisma.role.findUnique({ where: {name} });
     if (existingRole) {
@@ -44,13 +45,17 @@ const updateRole = async (requesterUser, roleId, updateData) => {
     const { name, hierarchyLevel, permissions } = updateData;
 
     const targetRole = await prisma.role.findUnique({ where: { id: roleId } });
-    if (!targetRole) throw { statusCode: 403, message: 'The ROOT role can not be modified' };
+    if (!targetRole) throw { statusCode: 403, message: 'Role not found' };
 
+    if (targetRole.name === 'ROOT') { // 👈 protección que faltaba
+        throw { statusCode: 403, message: 'The ROOT role can not be modified' };
+    }
+    
     validateHierarchy(requesterUser, targetRole.hierarchyLevel);
-
     if (hierarchyLevel !== undefined) {
         validateHierarchy(requesterUser, hierarchyLevel);
     }
+    if (permissions) ensureGrantablePermissions(requesterUser, permissions);
 
     if (name && name !== targetRole.name) {
         const existingRole = await prisma.role.findUnique({ where: {name} });
