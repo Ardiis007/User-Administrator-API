@@ -5,7 +5,7 @@ PROJECT EXPORT FOR LLMs
 PROJECT INFORMATION:
 --------------------------------------------------
 Project Name: UserAdminAPI
-Generated On: 2026-07-08 14:32:28 (America/Bogota / GMT-05:00)
+Generated On: 2026-07-08 14:41:55 (America/Bogota / GMT-05:00)
 Total Files Processed: 27
 Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
 Tool Author: Jota / José Guilherme Pandolfi
@@ -56,7 +56,7 @@ PROJECT STRUCTURE
 │   ├── 📄 app.js (817 B)
 │   └── 📄 server.js (191 B)
 ├── 📄 package-lock.json (97.77 KB)
-├── 📄 package.json (772 B)
+├── 📄 package.json (794 B)
 └── 📄 prisma.config.ts (281 B)
 
 ================================================================================
@@ -66,7 +66,7 @@ Total Files: 27
 Total Directories: 9
 Text Files: 26
 Binary Files: 1
-Total Size: 131.76 KB
+Total Size: 131.78 KB
 
 FILE TYPES DISTRIBUTION:
 ------------------------------
@@ -4422,15 +4422,15 @@ FILE: package.json
 
 FILE INFORMATION:
 ----------------------------------------
-Size: 772 B
+Size: 794 B
 Extension: .json
 Language: json
 Location: package.json
 Relative Path: root
 Created: 2026-07-07 14:05:22 (America/Bogota / GMT-05:00)
-Modified: 2026-07-07 14:05:22 (America/Bogota / GMT-05:00)
-MD5: 6e48d8242ed4696fe0fc44c20040207f
-SHA256: 4f99bce7b130954849cae9827dd1acc5abed8bf2243789c12777dff07efd5b32
+Modified: 2026-07-08 14:41:55 (America/Bogota / GMT-05:00)
+MD5: 9937cc18571b37aa9a7f93959536ff8e
+SHA256: fb1a59da329673b895daffe6b53678d342118d2523f1e6a2d1a32af78394f94a
 Encoding: ASCII
 
 FILE CONTENT:
@@ -4441,7 +4441,7 @@ FILE CONTENT:
   "description": "",
   "main": "index.js",
   "scripts": {
-  "start": "node src/server.js",
+  "start": "npx prisma db push && node src/server.js",
   "postinstall": "prisma generate",
   "dev": "nodemon src/server.js"
   },
